@@ -1,0 +1,176 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Museo Matemático-Simbólico Inmersivo - Sistema de Diseño Cósmico */
+
+@layer base {
+  :root {
+    /* Cosmic Void Base */
+    --cosmic-void: 0 0% 3%;
+    --cosmic-deep: 240 8% 8%;
+    --cosmic-medium: 240 6% 12%;
+    --cosmic-surface: 240 4% 16%;
+    
+    /* Luminous Accents */
+    --quantum-blue: 220 100% 65%;
+    --neural-cyan: 180 100% 70%;
+    --chaos-purple: 270 100% 75%;
+    --fractal-gold: 45 100% 65%;
+    --symbiosis-green: 120 100% 60%;
+    --resonance-pink: 320 100% 70%;
+    --expansion-orange: 25 100% 65%;
+    
+    /* Gradients for Consciousness */
+    --gradient-chaos: linear-gradient(135deg, hsl(270 100% 75% / 0.8), hsl(300 100% 65% / 0.6));
+    --gradient-neural: linear-gradient(90deg, hsl(180 100% 70% / 0.7), hsl(200 100% 60% / 0.5));
+    --gradient-fractal: linear-gradient(45deg, hsl(45 100% 65% / 0.8), hsl(60 100% 70% / 0.6));
+    --gradient-quantum: linear-gradient(180deg, hsl(220 100% 65% / 0.7), hsl(240 100% 55% / 0.5));
+    --gradient-symbiosis: linear-gradient(270deg, hsl(120 100% 60% / 0.8), hsl(140 100% 65% / 0.6));
+    --gradient-resonance: linear-gradient(225deg, hsl(320 100% 70% / 0.7), hsl(340 100% 60% / 0.5));
+    --gradient-expansion: linear-gradient(315deg, hsl(25 100% 65% / 0.8), hsl(45 100% 60% / 0.6));
+    
+    /* Universal Constants */
+    --consciousness-glow: 0 0 80px hsl(var(--quantum-blue) / 0.3);
+    --thought-shadow: 0 0 40px hsl(var(--neural-cyan) / 0.2);
+    --wisdom-aura: 0 0 120px hsl(var(--chaos-purple) / 0.15);
+    
+    /* Design System Mapping */
+    --background: var(--cosmic-void);
+    --foreground: 0 0% 95%;
+    --card: var(--cosmic-surface);
+    --card-foreground: 0 0% 90%;
+    --primary: var(--quantum-blue);
+    --primary-foreground: 0 0% 98%;
+    --secondary: var(--cosmic-medium);
+    --secondary-foreground: 0 0% 85%;
+    --muted: var(--cosmic-deep);
+    --muted-foreground: 0 0% 65%;
+    --accent: var(--neural-cyan);
+    --accent-foreground: 0 0% 10%;
+    --border: var(--cosmic-medium);
+    --radius: 1rem;
+  }
+  
+  .dark {
+    /* Dark mode inherits cosmic design */
+    --background: var(--cosmic-void);
+    --foreground: 0 0% 95%;
+    --card: var(--cosmic-surface);
+    --card-foreground: 0 0% 90%;
+    --primary: var(--quantum-blue);
+    --primary-foreground: 0 0% 98%;
+    --secondary: var(--cosmic-medium);
+    --secondary-foreground: 0 0% 85%;
+    --muted: var(--cosmic-deep);
+    --muted-foreground: 0 0% 65%;
+    --accent: var(--neural-cyan);
+    --accent-foreground: 0 0% 10%;
+    --border: var(--cosmic-medium);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground overflow-hidden;
+    background: radial-gradient(ellipse at center, hsl(var(--cosmic-deep)) 0%, hsl(var(--cosmic-void)) 100%);
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  
+  /* Cosmic Canvas Base */
+  .cosmic-canvas {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background: transparent;
+  }
+  
+  /* Module Container */
+  .consciousness-module {
+    position: relative;
+    border-radius: var(--radius);
+    backdrop-filter: blur(20px);
+    border: 1px solid hsl(var(--border) / 0.3);
+    overflow: hidden;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .consciousness-module::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg, 
+      hsl(var(--primary) / 0.05) 0%, 
+      hsl(var(--accent) / 0.03) 50%, 
+      transparent 100%);
+    pointer-events: none;
+  }
+  
+  /* Quantum Glow Effects */
+  .quantum-glow {
+    box-shadow: var(--consciousness-glow);
+  }
+  
+  .thought-glow {
+    box-shadow: var(--thought-shadow);
+  }
+  
+  .wisdom-glow {
+    box-shadow: var(--wisdom-aura);
+  }
+}
+
+@layer components {
+  /* Flowing Animations */
+  @keyframes consciousness-flow {
+    0%, 100% { 
+      transform: scale(1) rotate(0deg);
+      opacity: 0.8;
+    }
+    50% { 
+      transform: scale(1.02) rotate(0.5deg);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes quantum-pulse {
+    0%, 100% { 
+      box-shadow: 0 0 20px hsl(var(--primary) / 0.3);
+    }
+    50% { 
+      box-shadow: 0 0 60px hsl(var(--primary) / 0.6);
+    }
+  }
+  
+  @keyframes neural-ripple {
+    0% {
+      transform: scale(0.95);
+      opacity: 0.7;
+    }
+    50% {
+      transform: scale(1.05);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(0.95);
+      opacity: 0.7;
+    }
+  }
+  
+  .animate-consciousness {
+    animation: consciousness-flow 8s ease-in-out infinite;
+  }
+  
+  .animate-quantum-pulse {
+    animation: quantum-pulse 4s ease-in-out infinite;
+  }
+  
+  .animate-neural-ripple {
+    animation: neural-ripple 6s ease-in-out infinite;
+  }
+}
