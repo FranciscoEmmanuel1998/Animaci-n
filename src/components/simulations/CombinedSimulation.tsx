@@ -189,6 +189,11 @@ const CombinedSimulation = () => {
     <div className="w-full h-full relative overflow-hidden">
       <canvas ref={canvasRef} className="w-full h-full" />
       <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-quantum-chaos/10 pointer-events-none" />
+      <div className="absolute inset-0 flex items-center justify-center text-center pointer-events-none">
+        <div className="text-white font-bold text-xl sm:text-2xl md:text-4xl leading-snug animate-epic-fade whitespace-pre-line">
+          {`Francisco Emmanuel Arias López\nLicenciatura en Multimedia y Animación digital\nFacultad de Ciencias Físico Matemáticas`}
+        </div>
+      </div>
     </div>
   )
 }
