@@ -173,7 +173,6 @@
   .animate-neural-ripple {
     animation: neural-ripple 6s ease-in-out infinite;
   }
-
   @keyframes epic-fade {
     0%, 10% {
       opacity: 0;
@@ -191,5 +190,18 @@
 
   .animate-epic-fade {
     animation: epic-fade 12s ease-in-out infinite;
+  @keyframes epic-text {
+    0%, 100% {
+      opacity: 0;
+      transform: translateY(10px) scale(0.98);
+    }
+    10%, 90% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .epic-text-animation {
+    animation: epic-text 12s ease-in-out infinite;
   }
 }

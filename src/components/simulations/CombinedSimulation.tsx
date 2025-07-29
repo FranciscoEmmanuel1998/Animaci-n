@@ -188,6 +188,15 @@ const CombinedSimulation = () => {
   return (
     <div className="w-full h-full relative overflow-hidden">
       <canvas ref={canvasRef} className="w-full h-full" />
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <div className="epic-text-animation text-center leading-snug text-white font-bold drop-shadow-md text-sm sm:text-base md:text-xl">
+          Francisco Emmanuel Arias López
+          <br />
+          Licenciatura en Multimedia y Animación digital
+          <br />
+          Facultad de Ciencias Físico Matemáticas
+        </div>
+      </div>
       <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-quantum-chaos/10 pointer-events-none" />
       <div className="absolute inset-0 flex items-center justify-center text-center pointer-events-none">
         <div className="text-white font-bold text-xl sm:text-2xl md:text-4xl leading-snug animate-epic-fade whitespace-pre-line">
