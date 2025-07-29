@@ -1,4 +1,4 @@
-import UnifiedSimulation from "@/components/simulations/UnifiedSimulation";
+import CombinedSimulation from "@/components/simulations/CombinedSimulation";
 const Index = () => {
   return (
     <div className="cosmic-canvas">
@@ -8,7 +8,7 @@ const Index = () => {
 
         {/* 4. Simulación unificada */}
         <div className="w-screen h-screen">
-          <UnifiedSimulation />
+          <CombinedSimulation />
         </div>
       </div>
     </div>
