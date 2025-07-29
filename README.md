@@ -36,6 +36,9 @@ npm i
 npm run dev
 ```
 
+Then open `http://localhost:8080` in your browser to explore the
+unified simulation on the home page.
+
 **Edit a file directly in GitHub**
 
 - Navigate to the desired file(s).
@@ -59,6 +62,16 @@ This project is built with:
 - React
 - shadcn-ui
 - Tailwind CSS
+
+## Animations
+
+Two visual simulations are combined in a single canvas:
+
+- **Cellular Automaton** – a Conway-inspired grid that evolves every frame.
+- **Chaos Attractor** – a Lorenz attractor rendered with a rotating 3‑D
+  projection.
+
+You can see both effects blended together on the index page.
 
 ## How can I deploy this project?
 
