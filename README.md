@@ -1,86 +1,276 @@
-# Welcome to your Lovable project
+# 🌌 Animación Cósmica - Portfolio Interactivo
 
-## Project info
+**Un viaje visual por el universo de la programación y la animación digital**
 
-**URL**: https://lovable.dev/projects/d777eeb4-6ac5-46ed-81b5-9732376eeb1d
+[![GitHub](https://img.shields.io/badge/GitHub-franciscoemmanuel1998-blue?style=for-the-badge&logo=github)](https://github.com/FranciscoEmmanuel1998/Animaci-n)
 
-## How can I edit this code?
+---
 
-There are several ways of editing your application.
+## 👨‍🎓 Autor
 
-**Use Lovable**
+**Francisco Emmanuel Arias López**  
+🎓 Licenciado en Multimedia y Animación Digital  
+🏫 Facultad de Ciencias Físico Matemáticas  
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/d777eeb4-6ac5-46ed-81b5-9732376eeb1d) and start prompting.
+---
 
-Changes made via Lovable will be committed automatically to this repo.
+## 🎯 Descripción del Proyecto
 
-**Use your preferred IDE**
+Este proyecto es una experiencia visual inmersiva que combina múltiples simulaciones matemáticas y físicas en tiempo real, creando un universo digital interactivo. Representa la convergencia entre arte, ciencia y tecnología, mostrando la belleza inherente en los sistemas complejos.
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### ✨ Características Principales
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- **🎨 Simulaciones Visuales Complejas**
+  - Autómata Celular de Conway (Game of Life)
+  - Atractor de Lorenz con proyección 3D
+  - Sistema de partículas estelares
+  - Campo de energía cósmica dinámico
 
-Follow these steps:
+- **🎵 Audio Interactivo**
+  - Explosión Big Bang sintetizada proceduralmente
+  - Música de fondo reactiva al audio
+  - Análisis FFT en tiempo real
+  - Visualización audio-reactiva
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+- **🎮 Cámara 3D Inmersiva**
+  - Movimiento orbital automático
+  - Perspectiva espacial realista
+  - Efectos de profundidad y parallax
+  - Rotación completa (Pitch, Yaw, Roll)
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+- **🌟 Efectos Visuales Avanzados**
+  - Resplandores dinámicos
+  - Gradientes adaptativos
+  - Partículas con física realista
+  - Transformaciones 3D en tiempo real
 
-# Step 3: Install the necessary dependencies.
-npm i
+---
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+## 🛠️ Tecnologías Utilizadas
+
+### Frontend
+- **React 18** - Framework principal
+- **TypeScript** - Tipado estático
+- **Vite** - Build tool moderno
+- **Tailwind CSS** - Estilos utilitarios
+
+### Renderizado & Animación
+- **HTML5 Canvas** - Renderizado 2D/3D
+- **Web Audio API** - Síntesis y análisis de audio
+- **RequestAnimationFrame** - Loop de animación optimizado
+
+### Algoritmos & Matemáticas
+- **Conway's Game of Life** - Autómata celular
+- **Sistema de Lorenz** - Atractor caótico
+- **Transformaciones 3D** - Matrices de rotación
+- **FFT Analysis** - Análisis frecuencial
+
+---
+
+## 🚀 Instalación y Uso
+
+### Prerrequisitos
+- Node.js 18+
+- npm o yarn
+- Navegador moderno con soporte para Web Audio API
+
+### Instalación
+
+```bash
+# Clonar el repositorio
+git clone https://github.com/FranciscoEmmanuel1998/Animaci-n.git
+
+# Navegar al directorio
+cd Animaci-n
+
+# Instalar dependencias
+npm install
+
+# Ejecutar en modo desarrollo
 npm run dev
+
+# Construir para producción
+npm run build
 ```
 
-Then open `http://localhost:8080` in your browser to explore the
-unified simulation on the home page.
+### Comandos Disponibles
 
-**Edit a file directly in GitHub**
+```bash
+npm run dev          # Servidor de desarrollo
+npm run build        # Construir para producción
+npm run preview      # Previsualizar build
+npm run lint         # Linter de código
+```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+---
 
-**Use GitHub Codespaces**
+## 🎮 Controles e Interacciones
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+- **🔊/🔇** - Control de audio
+- **ⓘ INFO** - Información del autor
+- **❓ ¿QUÉ VES?** - Explicación técnica
+- **⟲** - Reiniciar simulación
+- **🖱️ Click** - Activar audio (requerido por navegadores)
 
-## What technologies are used for this project?
+---
 
-This project is built with:
+## 🧬 Componentes Técnicos
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### Sistema de Simulación Principal
+```
+EnhancedCombinedSimulation.tsx
+├── 🌌 Fondo Cósmico Dinámico
+├── 🎯 Autómata Celular de Conway
+├── 🌀 Atractor de Lorenz 3D
+├── ⚡ Sistema de Partículas
+├── 🎵 Motor de Audio Procedural
+└── 📹 Cámara 3D Orbital
+```
 
-## Animations
+### Arquitectura de Audio
+```
+CosmicAudioEngine.ts
+├── 💥 Síntesis de Explosión Nuclear
+├── 🎼 Análisis FFT en Tiempo Real
+├── 🔊 Gestión de Contexto de Audio
+└── 🎨 Mapeo Audio-Visual
+```
 
-Two visual simulations are combined in a single canvas:
+---
 
-- **Cellular Automaton** – a Conway-inspired grid that evolves every frame.
-- **Chaos Attractor** – a Lorenz attractor rendered with a rotating 3‑D
-  projection.
+## 🔬 Algoritmos Implementados
 
-You can see both effects blended together on the index page.
+### 1. **Conway's Game of Life**
+- Implementación optimizada del autómata celular
+- Mutaciones cósmicas aleatorias
+- Integración con sistema de partículas
 
-## How can I deploy this project?
+### 2. **Atractor de Lorenz**
+```javascript
+// Ecuaciones diferenciales
+dx/dt = σ(y - x)
+dy/dt = x(ρ - z) - y
+dz/dt = xy - βz
+```
 
-Simply open [Lovable](https://lovable.dev/projects/d777eeb4-6ac5-46ed-81b5-9732376eeb1d) and click on Share -> Publish.
+### 3. **Transformaciones 3D**
+- Rotación Yaw, Pitch, Roll
+- Proyección perspectiva
+- Sistema de coordenadas cósmico
 
-## Can I connect a custom domain to my Lovable project?
+### 4. **Síntesis de Audio Procedural**
+- Osciladores múltiples
+- Filtros dinámicos
+- Reverb de convolución
+- Compresión dinámica
 
-Yes, you can!
+---
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## 🎨 Características Visuales
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+### Paleta de Colores Cósmica
+- **Dorado Estelar** (`#FFD700`) - Elementos principales
+- **Ámbar Cósmico** (`#FFA500`) - Acentos dinámicos
+- **Azul Profundo** (`#000080`) - Espacio profundo
+- **Blanco Estelar** (`#FFFFFF`) - Highlights
+
+### Efectos de Renderizado
+- **Composición Aditiva** - Efectos de luz realistas
+- **Desvanecimiento Gradual** - Estelas de movimiento
+- **Resplandores Dinámicos** - Intensidad variable
+- **Transparencias Complejas** - Capas visuales
+
+---
+
+## 📱 Responsividad
+
+El proyecto está optimizado para múltiples dispositivos:
+
+- **🖥️ Desktop** - Experiencia completa
+- **📱 Mobile** - Adaptación táctil
+- **📊 Tablet** - Interfaz intermedia
+- **⌚ Smartwatch** - Vista minimalista
+
+---
+
+## 🌐 Compatibilidad de Navegadores
+
+| Navegador | Versión Mínima | Estado |
+|-----------|----------------|--------|
+| Chrome    | 88+            | ✅ Completo |
+| Firefox   | 85+            | ✅ Completo |
+| Safari    | 14+            | ⚠️ Limitado* |
+| Edge      | 88+            | ✅ Completo |
+
+*Algunas características de Web Audio API pueden estar limitadas
+
+---
+
+## 🚀 Roadmap Futuro
+
+### v2.0 - Expansión Dimensional
+- [ ] Renderizado WebGL/Three.js
+- [ ] Realidad Virtual (WebXR)
+- [ ] Física cuántica simulada
+- [ ] IA generativa integrada
+
+### v2.1 - Interactividad Avanzada
+- [ ] Control manual de cámara
+- [ ] Parámetros ajustables en vivo
+- [ ] Grabación de sesiones
+- [ ] Modo colaborativo
+
+### v2.2 - Optimización
+- [ ] Web Workers para cálculos
+- [ ] Service Workers (PWA)
+- [ ] Lazy loading inteligente
+- [ ] Compresión de assets
+
+---
+
+## 🤝 Contribuciones
+
+Las contribuciones son bienvenidas. Por favor:
+
+1. Fork el proyecto
+2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
+3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
+4. Push a la rama (`git push origin feature/AmazingFeature`)
+5. Abre un Pull Request
+
+---
+
+## 📄 Licencia
+
+Este proyecto está bajo la Licencia MIT. Ver `LICENSE` para más detalles.
+
+---
+
+## 🙏 Agradecimientos
+
+- **Conway, John Horton** - Por el Game of Life
+- **Lorenz, Edward** - Por el sistema de ecuaciones caóticas
+- **Community React** - Por el ecosistema increíble
+- **Web Audio API** - Por hacer posible el audio procedural
+
+---
+
+## 📬 Contacto
+
+**Francisco Emmanuel Arias López**
+
+-  GitHub: [@FranciscoEmmanuel1998](https://github.com/FranciscoEmmanuel1998)
+
+---
+
+<div align="center">
+
+**⭐ Si te gusta este proyecto, dale una estrella en GitHub ⭐**
+
+**Hecho con ❤️ y mucho ☕ en México 🇲🇽**
+
+---
+
+*"En el caos de los números, encuentra la belleza del universo"* 🌌
+
+</div>

@@ -1,10 +1,12 @@
 import EnhancedCombinedSimulation from "@/components/simulations/EnhancedCombinedSimulation";
+import { CellularAutomaton } from "@/components/simulations/CellularAutomaton";
 import { useState, useRef, useEffect } from "react";
 
 const Index = () => {
   const [showInfo, setShowInfo] = useState(true);
   const [showExplanation, setShowExplanation] = useState(false);
   const [simulationKey, setSimulationKey] = useState(0);
+  const [simulationMode, setSimulationMode] = useState<'enhanced'|'species'>('enhanced');
   const [isMuted, setIsMuted] = useState(false);
   const [audioInitialized, setAudioInitialized] = useState(false);
   
@@ -103,7 +105,11 @@ const Index = () => {
     <div className="cosmic-canvas w-screen h-screen overflow-hidden relative bg-black">
       {/* TU ANIMACIÓN DORADA INTOCABLE - BACKGROUND COMPLETO */}
       <div className="absolute inset-0 z-0">
-        <EnhancedCombinedSimulation key={simulationKey} />
+        {simulationMode === 'enhanced' ? (
+          <EnhancedCombinedSimulation key={`enhanced-${simulationKey}`} />
+        ) : (
+          <CellularAutomaton key={`species-${simulationKey}`} />
+        )}
       </div>
 
       {/* OVERLAY PROFESIONAL - NO INTERFIERE CON LA ANIMACIÓN */}
@@ -127,6 +133,15 @@ const Index = () => {
                        transition-all duration-300 hover:border-amber-400/40"
           >
             {showExplanation ? '◉ ¿QUÉ VES?' : '○ ¿QUÉ VES?'}
+          </button>
+
+          <button
+            onClick={() => setSimulationMode(m => m === 'enhanced' ? 'species' : 'enhanced')}
+            className="px-4 py-2 bg-black/30 backdrop-blur-sm border border-amber-500/20 
+                       text-amber-300 text-sm font-mono rounded-md hover:bg-black/50 
+                       transition-all duration-300 hover:border-amber-400/40"
+          >
+            {simulationMode === 'enhanced' ? '○ ESPECIES' : '◉ ESPECIES'}
           </button>
         </div>
 
@@ -321,6 +336,20 @@ es una espiral doble caótica, donde las trayectorias giran alrededor de dos ló
             ⟲
           </button>
         </div>
+
+        {simulationMode === 'species' && (
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 pointer-events-auto bg-black/40 backdrop-blur-md border border-amber-500/20 rounded-lg px-5 py-3 flex flex-wrap gap-3 max-w-xl justify-center text-[10px] font-mono text-amber-200">
+            <div className="flex items-center gap-1"><span className="w-3 h-3 rounded-sm" style={{background:'hsl(0,90%,60%)'}}></span>Especie 1</div>
+            <div className="flex items-center gap-1"><span className="w-3 h-3 rounded-sm" style={{background:'hsl(60,90%,60%)'}}></span>Especie 2</div>
+            <div className="flex items-center gap-1"><span className="w-3 h-3 rounded-sm" style={{background:'hsl(120,70%,55%)'}}></span>Especie 3</div>
+            <div className="flex items-center gap-1"><span className="w-3 h-3 rounded-sm" style={{background:'hsl(180,70%,55%)'}}></span>Especie 4</div>
+            <div className="flex items-center gap-1"><span className="w-3 h-3 rounded-sm" style={{background:'hsl(240,70%,60%)'}}></span>Especie 5</div>
+            <div className="flex items-center gap-1"><span className="w-3 h-3 rounded-sm" style={{background:'hsl(300,70%,60%)'}}></span>Especie 6</div>
+            <div className="flex items-center gap-1"><span className="w-3 h-3 rounded-sm" style={{background:'hsl(30,85%,60%)'}}></span>Especie 7</div>
+            <div className="flex items-center gap-1"><span className="w-3 h-3 rounded-sm border border-white/40" style={{background:'hsl(270,70%,60%)'}}></span>Reserva</div>
+            <div className="opacity-70">Armas: gris=fábrica, rojo=arma, amarillo=cabeza nuclear</div>
+          </div>
+        )}
         
         {/* ELEMENTO DE AUDIO PARA MÚSICA DE FONDO */}
                 <audio

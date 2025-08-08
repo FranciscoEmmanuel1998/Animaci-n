@@ -27,6 +27,9 @@ const CombinedSimulation = () => {
     let currentGeneration: number[][] = []
     let nextGeneration: number[][] = []
     let generation = 0
+    // --- NUEVO: métricas para continuidad sin reset ---
+    let previousLiveCount = -1
+    let stagnationCounter = 0
 
     const initializeGrid = () => {
       currentGeneration = Array(rows).fill(null).map(() => Array(cols).fill(0))
@@ -35,13 +38,33 @@ const CombinedSimulation = () => {
         for (let col = 0; col < cols; col++) {
           const centerX = cols / 2
           const centerY = rows / 2
-          const distance = Math.sqrt((col - centerX) ** 2 + (row - centerY) ** 2)
-          if (distance < 20) {
-            currentGeneration[row][col] = Math.random() > 0.6 ? 1 : 0
-          } else if (Math.random() > 0.95) {
-            currentGeneration[row][col] = 1
-          }
+            const distance = Math.sqrt((col - centerX) ** 2 + (row - centerY) ** 2)
+            if (distance < 20) {
+              currentGeneration[row][col] = Math.random() > 0.6 ? 1 : 0
+            } else if (Math.random() > 0.95) {
+              currentGeneration[row][col] = 1
+            }
         }
+      }
+    }
+
+    // Pequeño glider para romper simetrías en rescates
+    const addGlider = (r: number, c: number) => {
+      const pattern = [ [0,1,0], [0,0,1], [1,1,1] ]
+      for (let pr = 0; pr < 3; pr++) {
+        for (let pc = 0; pc < 3; pc++) {
+          const rr = (r + pr + rows) % rows
+          const cc = (c + pc + cols) % cols
+          currentGeneration[rr][cc] = pattern[pr][pc]
+        }
+      }
+    }
+
+    const randomSeedPatch = (count: number) => {
+      for (let k = 0; k < count; k++) {
+        const r = Math.floor(Math.random() * rows)
+        const c = Math.floor(Math.random() * cols)
+        currentGeneration[r][c] = 1
       }
     }
 
@@ -59,6 +82,7 @@ const CombinedSimulation = () => {
     }
 
     const updateGeneration = () => {
+      let liveCount = 0
       for (let row = 0; row < rows; row++) {
         for (let col = 0; col < cols; col++) {
           const neighbors = countNeighbors(row, col)
@@ -71,16 +95,33 @@ const CombinedSimulation = () => {
             if (neighbors === 3) nextGeneration[row][col] = 1
             else nextGeneration[row][col] = 0
           }
+          if (currentCell === 1) liveCount++
+          // Mutación ligera continua
           if (generation % 100 === 0 && Math.random() > 0.998) {
             nextGeneration[row][col] = 1 - nextGeneration[row][col]
           }
         }
       }
       ;[currentGeneration, nextGeneration] = [nextGeneration, currentGeneration]
+      // Limpiar buffer next para evitar residuos
+      for (let r = 0; r < rows; r++) nextGeneration[r].fill(0)
       generation++
-      if (generation % 500 === 0) {
-        initializeGrid()
-        generation = 0
+
+      // --- Eliminado reset periódico: ahora adaptativo ---
+      if (previousLiveCount === liveCount) stagnationCounter++; else stagnationCounter = 0
+      previousLiveCount = liveCount
+
+      // Extinción: rescate con varias inserciones
+      if (liveCount === 0) {
+        for (let k = 0; k < 6; k++) addGlider(Math.floor(Math.random()*rows), Math.floor(Math.random()*cols))
+        randomSeedPatch(Math.floor((rows*cols) * 0.02))
+      }
+
+      // Estancamiento prolongado: inyectar patrones y ruido suave
+      if (stagnationCounter > 120) { // ~12 ciclos de update
+        for (let k = 0; k < 4; k++) addGlider(Math.floor(Math.random()*rows), Math.floor(Math.random()*cols))
+        randomSeedPatch(Math.floor((rows*cols) * 0.01))
+        stagnationCounter = 0
       }
     }
 
@@ -92,8 +133,6 @@ const CombinedSimulation = () => {
     let x = 1, y = 1, z = 1
     const points: { x: number; y: number; z: number; age: number }[] = []
     const maxPoints = 2000
-
-   
 
     let lastUpdate = 0
     const updateInterval = 100
@@ -154,10 +193,6 @@ const CombinedSimulation = () => {
         ctx.fill()
       })
 
-    
-
-     
-
       animationRef.current = requestAnimationFrame(animate)
     }
 
@@ -175,23 +210,18 @@ const CombinedSimulation = () => {
       const elapsed = timestamp - bigBangStart
       const progress = Math.min(elapsed / bigBangDuration, 1)
       setBigBangProgress(progress)
-      // Centra la explosión donde inicia el atractor y el cúmulo de galaxias
       const cx = canvasRef.current.width / 4
       const cy = canvasRef.current.height / 4
       const maxRadius = Math.max(cx, cy) * 1.2
       const radius = progress * maxRadius
-      // Opacidad: baja de 1 a 0.5 en el primer segundo, sube a 0.9 en el segundo 2, se mantiene en 0.9 hasta el segundo 5, luego desaparece
       let explosionAlpha = 1
       if (elapsed < 1000) {
         explosionAlpha = 1 - 0.5 * (elapsed / 1000)
       } else if (elapsed < 2000) {
-        // Sube linealmente de 0.5 a 0.9 entre el segundo 1 y 2
         explosionAlpha = 0.5 + 0.5 * ((elapsed - 1000) / 1000)
       } else if (elapsed < 5000) {
-        // Mantiene 0.9 entre el segundo 2 y 5
         explosionAlpha = 0.9
       } else if (elapsed < bigBangDuration) {
-        // Baja linealmente de 0.9 a 0 entre el segundo 5 y el final
         explosionAlpha = 0.9 * (1 - (elapsed - 5000) / (bigBangDuration - 5000))
       } else {
         explosionAlpha = 0
@@ -222,7 +252,7 @@ const CombinedSimulation = () => {
       }
     }
     bigBangFrame = requestAnimationFrame(bigBang)
-    // Inicia la animación principal desde el segundo 1
+    // Inicio principal tras big bang
     startTimeout = window.setTimeout(() => {
       initializeGrid()
       animationRef.current = requestAnimationFrame(animate)
